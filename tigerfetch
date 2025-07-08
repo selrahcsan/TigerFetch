@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 
 import psutil
+import platform
 
 def get_cpu_info():
     freq_mhz = psutil.cpu_freq().max
@@ -20,9 +21,11 @@ def get_memory():
 def tigerfetch():
     cpu = get_cpu_info()
     memory = get_memory()
+    kernel = platform.release()
     
     print(f"CPU     {cpu}")
     print(f"MEM     {memory}")
+    print(f"KERNEL  {kernel}")
 
 if __name__ == "__main__":
     tigerfetch()
