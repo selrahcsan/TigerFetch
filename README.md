@@ -9,12 +9,14 @@ Exibe:
 * Frequência máxima da CPU (em GHz, com 2 casas decimais)
 * Número total de núcleos lógicos disponíveis
 * Memória usada e total (em MiB)
+* Exibe a versão do kernel em uso
 
 ### 📦 Exemplo de saída
 
 ```bash
 CPU     3.60 GHz (8 cores)
 MEM     4200MiB / 7986MiB
+KERNEL  6.15
 ```
 
 ## 🚀 Como usar
@@ -53,3 +55,4 @@ Projeto Inspirado no falecido [neofetch](https://github.com/dylanaraps/neofetch)
 ## 📚 Referências
 
 * [thepythoncode](https://thepythoncode.com/article/get-hardware-system-information-python#CPU_info)
+*[docs.python.org](https://docs.python.org/3/library/platform.html#platform.machine)
