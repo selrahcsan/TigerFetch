@@ -11,10 +11,18 @@ def get_cpu_info():
         return f"{freq_ghz:.2f} GHz ({logical_cores} cores)"
     return f"N/A ({logical_cores} cores)"
 
+def get_memory():
+    mem = psutil.virtual_memory()
+    total = mem.total // (1024 ** 2)
+    used = mem.used // (1024 ** 2)
+    return f"{used}MiB / {total}MiB"
+
 def tigerfetch():
     cpu = get_cpu_info()
+    memory = get_memory()
     
     print(f"CPU     {cpu}")
+    print(f"MEM     {memory}")
 
 if __name__ == "__main__":
     tigerfetch()
