@@ -24,7 +24,7 @@ KERNEL  6.15
 ### 1. Clone o repositório
 
 ```bash
-git clone https://github.com/seu-usuario/tigerfetch.gitgit
+git clone https://github.com/selrahcsan/tigerfetch.gitgit
 cd tigerfetch
 ```
 
