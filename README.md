@@ -8,11 +8,13 @@ Exibe:
 
 * Frequência máxima da CPU (em GHz, com 2 casas decimais)
 * Número total de núcleos lógicos disponíveis
+* Memória usada e total (em MiB)
 
 ### 📦 Exemplo de saída
 
 ```bash
 CPU     3.60 GHz (8 cores)
+MEM     4200MiB / 7986MiB
 ```
 
 ## 🚀 Como usar
@@ -41,6 +43,7 @@ python3 tigerfetch.py
 ## 📁 Estrutura do script
 
 * `get_cpu_info()` – obtém frequência da CPU e núcleos lógicos
+* `get_memory()` – obtém memória total e usada (em MiB)
 * `tigerfetch()` – imprime as informações
 
 ## ✨ Créditos
