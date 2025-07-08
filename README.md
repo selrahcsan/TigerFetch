@@ -49,3 +49,7 @@ python3 tigerfetch.py
 ## ✨ Créditos
 
 Projeto Inspirado no falecido [neofetch](https://github.com/dylanaraps/neofetch).
+
+## 📚 Referências
+
+* [thepythoncode](https://thepythoncode.com/article/get-hardware-system-information-python#CPU_info)
