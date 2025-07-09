@@ -39,7 +39,8 @@ sudo apt install python3-psutil lolcat figlet
 ### 3. Execute o script
 
 ```bash
-python3 tigerfetch.py
+chmod +x tigerfetch
+./tigerfetch
 ```
 
 ## 📁 Estrutura do script
