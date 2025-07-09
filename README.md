@@ -14,9 +14,16 @@ Exibe:
 ### 📦 Exemplo de saída
 
 ```bash
-CPU     3.60 GHz (8 cores)
-MEM     4200MiB / 7986MiB
-KERNEL  6.15
+ _____ _                  ___  ____  
+|_   _(_) __ _  ___ _ __ / _ \/ ___| 
+  | | | |/ _` |/ _ \ '__| | | \___ \ 
+  | | | | (_| |  __/ |  | |_| |___) |
+  |_| |_|\__, |\___|_|   \___/|____/ 
+         |___/                       
+    USER    charles
+    CPU     3.60 GHz (8 cores)
+    MEM     4200MiB / 7986MiB
+    KERNEL  6.15
 ```
 
 ## 🚀 Como usar
