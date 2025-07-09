@@ -3,6 +3,7 @@
 import psutil
 import platform
 import subprocess
+import getpass
 
 def get_cpu_info():
     freq_mhz = psutil.cpu_freq().max
@@ -23,8 +24,10 @@ def tigerfetch():
     cpu = get_cpu_info()
     memory = get_memory()
     kernel = platform.release()
+    user = getpass.getuser()
     
     subprocess.run('figlet "TigerOS"', shell=True)
+    print(f"USER    {user}")
     print(f"CPU     {cpu}")
     print(f"MEM     {memory}")
     print(f"KERNEL  {kernel}")
