@@ -9,7 +9,9 @@ Exibe:
 * Frequência máxima da CPU (em GHz, com 2 casas decimais)
 * Número total de núcleos lógicos disponíveis
 * Memória usada e total (em MiB)
-* Exibe a versão do kernel em uso
+* A versão do kernel em uso
+* Escrito TigerOS em Large text
+* Cores em arco-íris
 
 ### 📦 Exemplo de saída
 
@@ -35,9 +37,11 @@ git clone https://github.com/selrahcsan/tigerfetch.git
 cd tigerfetch
 ```
 
-### 2. Instale a dependência
+### 2. Instale as dependências
 
-Requer o [`psutil`](https://pypi.org/project/psutil/):
+* [`psutil`](https://pypi.org/project/psutil/)
+* [`lolcat`](https://github.com/busyloop/lolcat)
+* [`figlet`](https://github.com/cmatsuoka/figlet)
 
 ```bash
 sudo apt install python3-psutil lolcat figlet 
