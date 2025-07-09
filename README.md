@@ -33,7 +33,7 @@ cd tigerfetch
 Requer o [`psutil`](https://pypi.org/project/psutil/):
 
 ```bash
-sudo apt install python3-psutil  
+sudo apt install python3-psutil lolcat figlet 
 ```
 
 ### 3. Execute o script
