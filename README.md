@@ -55,4 +55,4 @@ Projeto Inspirado no falecido [neofetch](https://github.com/dylanaraps/neofetch)
 ## 📚 Referências
 
 * [thepythoncode](https://thepythoncode.com/article/get-hardware-system-information-python#CPU_info)
-*[docs.python.org](https://docs.python.org/3/library/platform.html#platform.machine)
+* [docs.python.org](https://docs.python.org/3/library/platform.html#platform.machine)
