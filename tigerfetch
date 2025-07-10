@@ -20,8 +20,29 @@ def get_memory():
     used = mem.used // (1024 ** 2)
     return f"{used}MiB / {total}MiB"
 
+def get_gpu_info():
+    try:
+        
+        lspci_output = subprocess.check_output(["lspci"], text=True)
+        gpu_line = next((line for line in lspci_output.splitlines() if "VGA" in line), None)
+        
+        if not gpu_line:
+            return "GPU não encontrada", "Memória não detectada"
+
+        gpu_name = gpu_line.split(":", 2)[-1].strip()
+       
+        card_id = gpu_line.split()[0]
+
+        return gpu_name
+
+    except subprocess.CalledProcessError as e:
+        return "Erro ao executar comandos", str(e)
+
+
+
 def tigerfetch():
     cpu = get_cpu_info()
+    gpu = get_gpu_info()
     memory = get_memory()
     kernel = platform.release()
     user = getpass.getuser()
@@ -29,8 +50,10 @@ def tigerfetch():
     subprocess.run('figlet "TigerOS"', shell=True)
     print(f"    USER    {user}")
     print(f"    CPU     {cpu}")
+    print(f"    GPU:    {gpu}")
     print(f"    MEM     {memory}")
-    print(f"KERNEL  {kernel}")
+    print(f"    KERNEL  {kernel}")
+    
 
 if __name__ == "__main__":
     tigerfetch()
