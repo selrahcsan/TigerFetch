@@ -30,7 +30,7 @@ def tigerfetch():
     print(f"    USER    {user}")
     print(f"    CPU     {cpu}")
     print(f"    MEM     {memory}")
-    print(f"    KERNEL  {kernel}")
+    print(f"KERNEL  {kernel}")
 
 if __name__ == "__main__":
     tigerfetch()
