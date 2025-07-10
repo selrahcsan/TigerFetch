@@ -24,6 +24,7 @@ Exibe:
          |___/                       
     USER    charles
     CPU     3.60 GHz (8 cores)
+    GPU:    NVIDIA Corporation TU116 [GeForce GTX 1650 SUPER] (rev a1)
     MEM     4200MiB / 7986MiB
     KERNEL  6.15
 ```
@@ -57,6 +58,7 @@ chmod +x tigerfetch
 ## 📁 Estrutura do script
 
 * `get_cpu_info()` – obtém frequência da CPU e núcleos lógicos
+* `get_gpu_info()` - obtém a marca e modelo da GPU
 * `get_memory()` – obtém memória total e usada (em MiB)
 * `tigerfetch()` – imprime as informações
 
