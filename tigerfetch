@@ -48,7 +48,7 @@ def tigerfetch():
     user = getpass.getuser()
     
     subprocess.run('figlet "TigerOS"', shell=True)
-    print(f"    🙂 USER    {user}")
+    print(f"    USER    {user}")
     print(f"    CPU     {cpu}")
     print(f"    GPU:    {gpu}")
     print(f"    MEM     {memory}")
