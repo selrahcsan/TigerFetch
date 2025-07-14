@@ -1,24 +1,46 @@
-name: Build and Auto Release .deb Package
+name: Build, version and release .deb package
 
 on:
   push:
-    branches: [main]
+    branches:
+      - main
   workflow_dispatch:
 
 jobs:
-  build-and-release:
+  build-release:
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0  
 
-      - name: Prepare environment
+      - name: Setup Git config
         run: |
-          sudo apt-get update
-          sudo apt-get install -y dpkg-dev
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
 
-      - name: Create .deb package
+      - name: Get current version and increment patch
+        id: version
+        run: |
+          
+          version=$(cat version.txt)
+          echo "Versão atual: $version"
+
+          IFS='.' read -r major minor patch <<< "$version"
+          patch=$((patch + 1))
+          new_version="$major.$minor.$patch"
+          echo "Nova versão: $new_version"
+
+          echo $new_version > version.txt
+
+          echo "NEW_VERSION=$new_version" >> $GITHUB_ENV
+
+          git add version.txt
+          git commit -m "ci: Nova versão: $new_version"
+          git push
+
+      - name: Build .deb package
         run: |
           mkdir -p tigerfetch_pkg/DEBIAN
           mkdir -p tigerfetch_pkg/usr/bin
@@ -26,27 +48,31 @@ jobs:
           cp tigerfetch tigerfetch_pkg/usr/bin/tigerfetch
           chmod 755 tigerfetch_pkg/usr/bin/tigerfetch
 
-          VERSION=$(date +%Y.%m.%d.%H%M)
-          echo "PACKAGE_VERSION=$VERSION" >> $GITHUB_ENV
-
           cat <<EOF > tigerfetch_pkg/DEBIAN/control
           Package: tigerfetch
-          Version: $VERSION
+          Version: ${{ env.NEW_VERSION }}
           Section: base
           Priority: optional
           Architecture: all
           Depends: python3, python3-psutil, figlet, pciutils
-          Maintainer: Charles Santana
+          Maintainer: Charles Santana <charlesstna@proton.me>
           Description: Tigerfetch - Uma ferramenta simples para exibir informações do sistema estilo Neofetch.
           EOF
 
           dpkg-deb --build tigerfetch_pkg
-          mv tigerfetch_pkg.deb tigerfetch-${{ env.PACKAGE_VERSION }}.deb
 
-      - name: Create GitHub Release and Upload .deb
+          mv tigerfetch_pkg.deb tigerfetch-${{ env.NEW_VERSION }}.deb
+          ls -l tigerfetch-${{ env.NEW_VERSION }}.deb
+
+      - name: Create Git Tag
+        run: |
+          git tag -a "v${{ env.NEW_VERSION }}" -m "Release version v${{ env.NEW_VERSION }}"
+          git push origin "v${{ env.NEW_VERSION }}"
+
+      - name: Create GitHub Release and upload .deb
         uses: ncipollo/release-action@v1
         with:
-          tag: v${{ env.PACKAGE_VERSION }}
-          name: Tigerfetch v${{ env.PACKAGE_VERSION }}
-          artifacts: tigerfetch-${{ env.PACKAGE_VERSION }}.deb
+          tag: v${{ env.NEW_VERSION }}
+          name: Tigerfetch v${{ env.NEW_VERSION }}
+          artifacts: tigerfetch-${{ env.NEW_VERSION }}.deb
           token: ${{ secrets.GITHUB_TOKEN }}
