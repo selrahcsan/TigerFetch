@@ -1,0 +1,47 @@
+name: Build .deb Package
+
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  build-deb:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Prepare environment
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y dpkg-dev
+
+      - name: Create .deb structure
+        run: |
+          mkdir -p tigerfetch_pkg/DEBIAN
+          mkdir -p tigerfetch_pkg/usr/bin
+
+          cp tigerfetch tigerfetch_pkg/usr/bin/tigerfetch
+          chmod 755 tigerfetch_pkg/usr/bin/tigerfetch
+
+          cat <<EOF > tigerfetch_pkg/DEBIAN/control
+          Package: tigerfetch
+          Version: 0.0.1
+          Section: base
+          Priority: optional
+          Architecture: all
+          Depends: python3, python3-psutil, figlet, pciutils
+          Maintainer: Charles Santana <charlesstna@proton.me>
+          Description: Tigerfetch - Uma ferramenta simples para exibir informações do sistema estilo Neofetch.
+          EOF
+
+          dpkg-deb --build tigerfetch_pkg
+          mv tigerfetch_pkg.deb tigerfetch-0.0.1.deb
+
+      - name: Upload .deb artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: tigerfetch-deb
+          path: tigerfetch-0.0.1.deb
