@@ -27,7 +27,7 @@ def get_gpu_info():
         gpu_line = next((line for line in lspci_output.splitlines() if "VGA" in line), None)
         
         if not gpu_line:
-            return "GPU não encontrada", "Memória não detectada"
+            return "GPU não encontrada"
 
         gpu_name = gpu_line.split(":", 2)[-1].strip()
        
@@ -48,7 +48,7 @@ def tigerfetch():
     user = getpass.getuser()
     
     subprocess.run('figlet "TigerOS"', shell=True)
-    print(f"    USER    {user}")
+    print(f"    🙂 USER    {user}")
     print(f"    CPU     {cpu}")
     print(f"    GPU:    {gpu}")
     print(f"    MEM     {memory}")
