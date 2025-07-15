@@ -1,5 +1,7 @@
 # 🐯 Tigerfetch
 
+![Screenshot do TigerFetch no Tiger 25 Beta](img/01.png)
+
 Um mini script Python inspirado no Neofetch, focado em exibir informações da CPU. É o desenvolvimento para aplicativos CLI para o [Conteiner do TigerOS](https://github.com/selrahcsan/Conteiner-TigerOS)
 
 ## 🔧 O que ele faz no momento
