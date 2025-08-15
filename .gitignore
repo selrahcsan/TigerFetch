@@ -1,0 +1,58 @@
+# =========================
+# PyCharm / IntelliJ IDEA
+# =========================
+.idea/
+*.iml
+
+# =========================
+# Python
+# =========================
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*$py.class
+
+# =========================
+# Ambientes virtuais
+# =========================
+venv/
+env/
+.venv/
+.env/
+
+# =========================
+# Logs e temporários
+# =========================
+*.log
+*.tmp
+*.temp
+
+# =========================
+# Cache de pacotes
+# =========================
+pip-wheel-metadata/
+pip-log.txt
+__pypackages__/
+
+# =========================
+# Testes
+# =========================
+.coverage
+.tox/
+.nox/
+.pytest_cache/
+
+# =========================
+# Jupyter Notebooks
+# =========================
+.ipynb_checkpoints/
+
+# =========================
+# Configuração local
+# =========================
+*.env
+*.local
+.DS_Store
+Thumbs.db
+
