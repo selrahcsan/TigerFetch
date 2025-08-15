@@ -31,7 +31,6 @@ def get_gpu_info():
             return "GPU não encontrada"
 
         gpu_name = gpu_line.split(":", 2)[-1].strip()
-
         card_id = gpu_line.split()[0]
 
         return gpu_name
@@ -47,6 +46,9 @@ def get_distro_name():
                     return line.strip().split("=")[1].strip('"')
     return "tigerfech"
 
+def get_de():
+    return os.environ.get("DESKTOP_SESSION").capitalize()
+
 def tigerfetch():
     cpu = get_cpu_info()
     gpu = get_gpu_info()
@@ -54,6 +56,7 @@ def tigerfetch():
     kernel = platform.release()
     user = getpass.getuser()
     distro = get_distro_name()
+    de = get_de()
     
     subprocess.run(f'figlet "{distro}"', shell=True)
     print(f"\033[31m    USER    \033[0m{user}")
@@ -61,7 +64,7 @@ def tigerfetch():
     print(f"\033[31m    GPU:    \033[0m{gpu}")
     print(f"\033[31m    MEM     \033[0m{memory}")
     print(f"\033[31m    KERNEL  \033[0m{kernel}")
-
+    print(f"\033[31m    DE:     \033[0m{de}")
 
 if __name__ == "__main__":
     tigerfetch()
