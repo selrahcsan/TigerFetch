@@ -4,6 +4,7 @@ import psutil
 import platform
 import subprocess
 import getpass
+import os
 
 def get_cpu_info():
     freq_mhz = psutil.cpu_freq().max
@@ -30,7 +31,7 @@ def get_gpu_info():
             return "GPU não encontrada"
 
         gpu_name = gpu_line.split(":", 2)[-1].strip()
-       
+
         card_id = gpu_line.split()[0]
 
         return gpu_name
@@ -38,7 +39,13 @@ def get_gpu_info():
     except subprocess.CalledProcessError as e:
         return "Erro ao executar comandos", str(e)
 
-
+def get_distro_name():
+    if os.path.exists("/etc/os-release"):
+        with open("/etc/os-release") as f:
+            for line in f:
+                if line.startswith("NAME="):
+                    return line.strip().split("=")[1].strip('"')
+    return "tigerfech"
 
 def tigerfetch():
     cpu = get_cpu_info()
@@ -46,14 +53,15 @@ def tigerfetch():
     memory = get_memory()
     kernel = platform.release()
     user = getpass.getuser()
+    distro = get_distro_name()
     
-    subprocess.run('figlet "TigerOS"', shell=True)
+    subprocess.run(f'figlet "{distro}"', shell=True)
     print(f"    USER    {user}")
     print(f"    CPU     {cpu}")
     print(f"    GPU:    {gpu}")
     print(f"    MEM     {memory}")
     print(f"    KERNEL  {kernel}")
-    
+
 
 if __name__ == "__main__":
     tigerfetch()
